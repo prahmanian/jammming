@@ -9,7 +9,8 @@ const track = {
   name: "Jammin'",
   artist: "Pedram",
   album: "LateNite React-ions",
-  id: 1234
+  id: 1234,
+  isRemoval: true,
 
 }
 
