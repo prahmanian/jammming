@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       searchResults: [
-        track, track, track, track
+        track, track, track
       ]
     }
   }
