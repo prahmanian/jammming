@@ -24,6 +24,19 @@ export default class App extends React.Component {
       playlistName: 'Smooth Eve Jams',
       playlistTracks: [track, track],
     }
+    this.addTrack = this.addTrack.bind(this)
+  }
+
+  addTrack(track) {
+    // check to see if track is already in playlistTracks
+    if (this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
+      // if it does, break out fo the method
+      return;
+    }
+    // if it does not, add track to end of playlist and update state
+    const newPlaylist = this.state.playlistTracks
+    newPlaylist.push(track)
+    this.setState({playlistTracks: newPlaylist})
   }
 
   render() {
@@ -33,7 +46,7 @@ export default class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className='App-playlist'>
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
           </div>
         </div>
