@@ -2,7 +2,7 @@ import './App.css';
 
 import SearchBar from '../../Components/SearchBar/SearchBar.js'
 import SearchResults from '../../Components/SearchResults/SearchResults.js'
-// import Playlist from '../../Components/Playlist'
+import Playlist from '../../Components/Playlist/Playlist.js'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <SearchBar />
         <div className='App-playlist'>
           <SearchResults />
-          {/* <Playlist /> */}
+          <Playlist />
         </div>
       </div>
     </div>
