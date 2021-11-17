@@ -20,7 +20,9 @@ export default class App extends React.Component {
     this.state = {
       searchResults: [
         track, track, track
-      ]
+      ],
+      playlistName: 'Smooth Eve Jams',
+      playlistTracks: [track, track],
     }
   }
 
@@ -32,7 +34,7 @@ export default class App extends React.Component {
           <SearchBar />
           <div className='App-playlist'>
             <SearchResults searchResults={this.state.searchResults}/>
-            <Playlist />
+            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
           </div>
         </div>
       </div>
