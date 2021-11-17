@@ -11,6 +11,7 @@ export default class Playlist extends React.Component {
                 <TrackList 
                     tracks={this.props.playlistTracks}
                     isRemoval={true}
+                    onRemove={this.props.onRemove}
                 />
                 <button class='Playlist-save'>SAVE TO SPOTIFY</button>
 
