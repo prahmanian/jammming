@@ -7,26 +7,13 @@ import Playlist from '../../Components/Playlist/Playlist.js'
 
 import Spotify from '../../util/Spotify';
 
-const track = {
-  name: "Jammin'",
-  artist: "Pedram",
-  album: "LateNite React-ions",
-  id: 1234,
-  isRemoval: true,
-
-}
-
-fetch(`https://api.spotify.com/v1/me`, {headers: {Authorization: `Bearer ${Spotify.getAccessToken()}`}}).then(response => {return response.json()}).then(jsonResponse => {console.log(jsonResponse)})
-
 export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      searchResults: [
-        track, 
-      ],
+      searchResults: [],
       playlistName: 'Smooth Eve Jams',
-      playlistTracks: [track, ],
+      playlistTracks: [],
     }
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
@@ -58,7 +45,12 @@ export default class App extends React.Component {
 
   savePlaylist(){
     const trackURIs = this.state.playlistTracks.map(track => {return track.uri})
-    return trackURIs
+    return Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({
+        playlistName:'New Playlist', 
+        playlistTracks: []
+      })
+    })
   }
 
   search(searchTerm) {
