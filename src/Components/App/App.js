@@ -16,15 +16,17 @@ const track = {
 
 }
 
+fetch(`https://api.spotify.com/v1/me`, {headers: {Authorization: `Bearer ${Spotify.getAccessToken()}`}}).then(response => {return response.json()}).then(jsonResponse => {console.log(jsonResponse)})
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       searchResults: [
-        track, track, track
+        track, 
       ],
       playlistName: 'Smooth Eve Jams',
-      playlistTracks: [track, track],
+      playlistTracks: [track, ],
     }
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
