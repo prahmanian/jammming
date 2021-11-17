@@ -1,6 +1,6 @@
 import './App.css';
 
-// import SearchBar from '../../Components/SearchBar'
+import SearchBar from '../../Components/SearchBar/SearchBar.js'
 // import SearchResults from '../../Components/SearchResults'
 // import Playlist from '../../Components/Playlist'
 
@@ -9,7 +9,7 @@ function App() {
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        {/* <SearchBar /> */}
+        <SearchBar />
         <div className='App-playlist'>
           {/* <SearchResults /> */}
           {/* <Playlist /> */}
