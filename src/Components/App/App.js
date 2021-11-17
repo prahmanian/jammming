@@ -12,7 +12,7 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       searchResults: [],
-      playlistName: 'Smooth Eve Jams',
+      playlistName: 'New Playlist',
       playlistTracks: [],
     }
     this.addTrack = this.addTrack.bind(this)
@@ -20,6 +20,7 @@ export default class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
     this.savePlaylist = this.savePlaylist.bind(this)
     this.search = this.search.bind(this)
+    this.reset = this.reset.bind(this)
   }
 
   addTrack(track) {
@@ -45,12 +46,7 @@ export default class App extends React.Component {
 
   savePlaylist(){
     const trackURIs = this.state.playlistTracks.map(track => {return track.uri})
-    return Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
-      this.setState({
-        playlistName:'New Playlist', 
-        playlistTracks: []
-      })
-    })
+    Spotify.savePlaylist(this.state.playlistName, trackURIs, this.reset)
   }
 
   search(searchTerm) {
@@ -58,6 +54,14 @@ export default class App extends React.Component {
     Spotify.search(searchTerm).then( results => {
       this.setState({searchResults: results})
     })
+  }
+
+  reset() {
+    this.setState({
+      playlistName:'New Playlist', 
+      playlistTracks: []
+    })
+    // .then(console.log('state.playlistName: ', this.state.playlistName))
   }
 
   render() {
