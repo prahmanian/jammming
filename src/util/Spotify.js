@@ -1,6 +1,5 @@
 // import spotify Client ID
 import {clientId} from './private'
-import SearchBar from '../Components/SearchBar/SearchBar'
 const redirectUri  = 'http://localhost:3001/'
 
 // variable to hold user's token
