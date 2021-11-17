@@ -5,7 +5,6 @@ import SearchBar from '../../Components/SearchBar/SearchBar.js'
 import SearchResults from '../../Components/SearchResults/SearchResults.js'
 import Playlist from '../../Components/Playlist/Playlist.js'
 
-import Shopify from '../../util/Spotify'
 import Spotify from '../../util/Spotify';
 
 const track = {
