@@ -1,3 +1,7 @@
+// import spotify Client ID
+import {clientId} from './private'
+const redirectUri  = 'http://localhost:3001/'
+
 // variable to hold user's token
 let token
 
@@ -20,6 +24,9 @@ const Spotify = {
             window.setTimeout(() => token = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/')
             return token
+        } else {
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
+            window.location = accessUrl
         }
     }
 }
