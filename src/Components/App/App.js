@@ -6,6 +6,7 @@ import SearchResults from '../../Components/SearchResults/SearchResults.js'
 import Playlist from '../../Components/Playlist/Playlist.js'
 
 import Spotify from '../../util/Spotify';
+import EmbeddedPLaylists from '../EmbeddedPlaylists/EmbeddedPlaylists';
 
 export default class App extends React.Component {
   constructor (props) {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
       searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: [],
+      playlists: [],
     }
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
@@ -21,6 +23,12 @@ export default class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this)
     this.search = this.search.bind(this)
     this.reset = this.reset.bind(this)
+    this.getPlaylists = this.getPlaylists.bind(this)
+    this.removePlaylist = this.removePlaylist.bind(this)
+  }
+
+  componentDidMount() {
+    this.getPlaylists()
   }
 
   addTrack(track) {
@@ -56,11 +64,20 @@ export default class App extends React.Component {
     })
   }
 
+  getPlaylists(){
+    Spotify.getPlaylists().then(playlists => {this.setState({playlists: playlists})})
+  }
+
+  removePlaylist(id){
+    Spotify.removePlaylist(id).then(() => {this.getPlaylists()})
+  }
+
   reset() {
     this.setState({
       playlistName:'New Playlist', 
       playlistTracks: []
     })
+    this.getPlaylists()
     // .then(console.log('state.playlistName: ', this.state.playlistName))
   }
 
@@ -82,7 +99,9 @@ export default class App extends React.Component {
               onNameChange={this.updatePlaylistName}
               onSave={this.savePlaylist}
             />
+            
           </div>
+          <EmbeddedPLaylists playlists={this.state.playlists} removePlaylist={this.removePlaylist}/>
         </div>
       </div>
     );

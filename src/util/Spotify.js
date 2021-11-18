@@ -84,7 +84,39 @@ const Spotify = {
             }).then(() => resetCallback())
     },
 
+    getPlaylists(){
+        const accessToken = Spotify.getAccessToken()
+        const headers = {Authorization: `Bearer ${accessToken}`,}
+        let userId
 
+        // get userId
+        return fetch(`https://api.spotify.com/v1/me`, {headers: headers})
+            .then(response => {return response.json()})
+            .then(jsonResponse => {
+                console.log('User: ', jsonResponse)
+                userId = jsonResponse.id
+                // get playlists
+                return fetch(`https://api.spotify.com/v1/me/playlists?limit=10`, {
+                    headers: headers,
+                }).then(response => {return response.json()}).then(
+                    jsonResponse => {
+                        // filter out playlists not created by the user
+                        const filtered = jsonResponse.items.filter(playlist => playlist.owner.id === userId)
+                        return filtered
+                    }
+                )
+            })
+    },
+
+    removePlaylist(id) {
+        const accessToken = Spotify.getAccessToken()
+        const headers = {Authorization: `Bearer ${accessToken}`,}
+
+        return fetch(`https://api.spotify.com/v1/playlists/${id}/followers`, {
+            headers: headers,
+            method: 'DELETE'
+        })
+    }
 }
 
 export default Spotify
