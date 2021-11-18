@@ -1,6 +1,7 @@
 // import spotify Client ID
 import {clientId} from './private'
-const redirectUri  = 'http://localhost:3001/'
+// const redirectUri  = 'http://localhost:3001/'
+const redirectUri  = 'jamming.surge.sh' //deployed to surge
 
 // variable to hold user's token
 let token
