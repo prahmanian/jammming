@@ -2,7 +2,8 @@
 import {clientId} from './private'
 // const redirectUri  = 'http://localhost:3001/'
 // const redirectUri  = 'http://pedram-jammming.surge.sh' //deployed to surge
-const redirectUri = 'https://prahmanian.github.io/jammming/' //deployed to GitHub Pages
+// const redirectUri = 'https://prahmanian.github.io/jammming/' //deployed to GitHub Pages
+const redirectUri = 'jammming.pedramrahmanian.com'
 
 // variable to hold user's token
 let token
@@ -24,7 +25,7 @@ const Spotify = {
 
             //This clears the parameterss so we can grab a new token when it expires
             window.setTimeout(() => token = '', expiresIn * 1000);
-            window.history.pushState('Access Token', null, '/')
+            window.history.pushState('Access Token', null, '/') //changed to /jammming for deployed
             return token
         } else {
             const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
