@@ -37,7 +37,7 @@ const Spotify = {
 
     // search functionality
     search(searchTerm) {
-        const accessToken = Spotify.getAccessToken()
+        const accessToken = Spotify.getAccessToken();
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -63,7 +63,7 @@ const Spotify = {
     savePlaylist(name, trackURIs, resetCallback) {
         if(!name || !trackURIs.length) {return}
 
-        const accessToken = Spotify.getAccessToken()
+        const accessToken = Spotify.getAccessToken();
         const headers = {Authorization: `Bearer ${accessToken}`,}
         let userId
 
@@ -107,6 +107,7 @@ const Spotify = {
                     jsonResponse => {
                         // filter out playlists not created by the user
                         const filtered = jsonResponse.items.filter(playlist => playlist.owner.id === userId)
+                        console.log('returned playlists: ', filtered)
                         return filtered
                     }
                 )

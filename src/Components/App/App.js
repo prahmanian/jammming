@@ -65,6 +65,7 @@ export default class App extends React.Component {
   }
 
   getPlaylists(){
+    console.log('state: ', this.state)
     Spotify.getPlaylists().then(playlists => {this.setState({playlists: playlists})})
   }
 
