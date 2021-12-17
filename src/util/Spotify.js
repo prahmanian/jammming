@@ -1,5 +1,7 @@
 // import spotify Client ID
-import {clientId} from './private'
+// import {clientId} from './private'
+// spotify app clientID
+const clientId = '720df69f5a4647a6980a7e93ea2c379a'
 // const redirectUri  = 'http://localhost:3001/'
 
 //deployed to GitHub Pages with custom domain
@@ -25,8 +27,7 @@ const Spotify = {
 
             //This clears the parameterss so we can grab a new token when it expires
             window.setTimeout(() => token = '', expiresIn * 1000);
-            window.history.pushState('Access Token', null, '/') //changed to /jammming for deployed
-            return token
+            window.history.pushState('Access Token', null, '/')
         } else {
             const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
             window.location = accessUrl
