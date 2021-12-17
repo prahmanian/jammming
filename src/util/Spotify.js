@@ -70,7 +70,6 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/me`, {headers: headers})
             .then(response => {return response.json()})
             .then(jsonResponse => {
-                console.log('User: ', jsonResponse)
                 userId = jsonResponse.id
                 return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
                     headers: headers,
@@ -79,7 +78,6 @@ const Spotify = {
                 }).then(response => response.json())
                 .then(jsonResponse => {
                     const playlistId = jsonResponse.id
-                    console.log('Playlist ID: ', playlistId)
                     return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
                         headers: headers,
                         method: "POST",
@@ -98,7 +96,7 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/me`, {headers: headers})
             .then(response => {return response.json()})
             .then(jsonResponse => {
-                console.log('User: ', jsonResponse)
+
                 userId = jsonResponse.id
                 // get playlists
                 return fetch(`https://api.spotify.com/v1/me/playlists?limit=10`, {
@@ -107,7 +105,6 @@ const Spotify = {
                     jsonResponse => {
                         // filter out playlists not created by the user
                         const filtered = jsonResponse.items.filter(playlist => playlist.owner.id === userId)
-                        console.log('returned playlists: ', filtered)
                         return filtered
                     }
                 )
